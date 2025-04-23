@@ -1,0 +1,371 @@
+[
+  {
+    "ContainingType": "EcommerceBackend.Controllers.AuthenticationController",
+    "Method": "Login",
+    "RelativePath": "api/Authentication/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserEmail",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Password",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.AuthenticationController",
+    "Method": "RegisterUser",
+    "RelativePath": "api/Authentication/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "UserEmail",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Password",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.CartController",
+    "Method": "AddtoCart",
+    "RelativePath": "api/Cart/AddToCart/{pro_id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pro_id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.CartController",
+    "Method": "GetAllCartItems",
+    "RelativePath": "api/Cart/cartitems",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.CartController",
+    "Method": "DCR_ProQty",
+    "RelativePath": "api/Cart/decrement-product-qty/{pro_id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pro_id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.CartController",
+    "Method": "Remove_FromCart",
+    "RelativePath": "api/Cart/DeleteItemFromCart/{pro_id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pro_id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.CartController",
+    "Method": "INR_ProQty",
+    "RelativePath": "api/Cart/increment-product-qty/{pro_id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pro_id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.CategoryController",
+    "Method": "Add_category",
+    "RelativePath": "api/Category/AddCategory",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CategoryName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.CategoryController",
+    "Method": "Delete_Cat",
+    "RelativePath": "api/Category/DeleteCategory{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.CategoryController",
+    "Method": "GetCat",
+    "RelativePath": "api/Category/getCategories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.ProductController",
+    "Method": "AddPro",
+    "RelativePath": "api/Product/Add_Pro",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ProductName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProductDescription",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Rating",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProductPrice",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "OfferPrize",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "CategoryName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CategoryId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.ProductController",
+    "Method": "GetAllProducts",
+    "RelativePath": "api/Product/All",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.ProductController",
+    "Method": "DeletePro",
+    "RelativePath": "api/Product/Delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.ProductController",
+    "Method": "FeturedPro",
+    "RelativePath": "api/Product/FeaturedPro",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.ProductController",
+    "Method": "GetByCateName",
+    "RelativePath": "api/Product/getByCategoryName",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CatName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.ProductController",
+    "Method": "GetById",
+    "RelativePath": "api/Product/GetById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.ProductController",
+    "Method": "HotDeals",
+    "RelativePath": "api/Product/HotDeals",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.ProductController",
+    "Method": "SearchPro",
+    "RelativePath": "api/Product/search-item",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.ProductController",
+    "Method": "Update_pro",
+    "RelativePath": "api/Product/Update_Pro/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "ProductName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProductDescription",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Rating",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProductPrice",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "OfferPrize",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "CategoryName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CategoryId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

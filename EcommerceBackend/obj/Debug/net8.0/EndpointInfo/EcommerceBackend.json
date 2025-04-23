@@ -1,0 +1,618 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "EcommerceBackend",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Authentication/Register": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "Password",
+                  "UserEmail",
+                  "UserName"
+                ],
+                "type": "object",
+                "properties": {
+                  "UserName": {
+                    "maxLength": 30,
+                    "type": "string"
+                  },
+                  "UserEmail": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "Password": {
+                    "maxLength": 20,
+                    "minLength": 8,
+                    "pattern": "^(?=.*[a-z])(?=.*\\d)(?=.*[\\W_]).+$",
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "UserName": {
+                  "style": "form"
+                },
+                "UserEmail": {
+                  "style": "form"
+                },
+                "Password": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Authentication/Login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "Password",
+                  "UserEmail"
+                ],
+                "type": "object",
+                "properties": {
+                  "UserEmail": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "Password": {
+                    "maxLength": 20,
+                    "minLength": 8,
+                    "pattern": "^(?=.*[a-z])(?=.*\\d)(?=.*[\\W_]).+$",
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "UserEmail": {
+                  "style": "form"
+                },
+                "Password": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Cart/cartitems": {
+      "get": {
+        "tags": [
+          "Cart"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Cart/AddToCart/{pro_id}": {
+      "post": {
+        "tags": [
+          "Cart"
+        ],
+        "parameters": [
+          {
+            "name": "pro_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Cart/DeleteItemFromCart/{pro_id}": {
+      "delete": {
+        "tags": [
+          "Cart"
+        ],
+        "parameters": [
+          {
+            "name": "pro_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Cart/increment-product-qty/{pro_id}": {
+      "patch": {
+        "tags": [
+          "Cart"
+        ],
+        "parameters": [
+          {
+            "name": "pro_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Cart/decrement-product-qty/{pro_id}": {
+      "patch": {
+        "tags": [
+          "Cart"
+        ],
+        "parameters": [
+          {
+            "name": "pro_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Category/getCategories": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Category/AddCategory": {
+      "post": {
+        "tags": [
+          "Category"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "CategoryName": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "CategoryName": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Category/DeleteCategory{id}": {
+      "delete": {
+        "tags": [
+          "Category"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              },
+              "encoding": {
+                "id": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Product/Add_Pro": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "CategoryId",
+                  "OfferPrize",
+                  "ProductDescription",
+                  "ProductName",
+                  "ProductPrice",
+                  "Rating"
+                ],
+                "type": "object",
+                "properties": {
+                  "ProductName": {
+                    "type": "string"
+                  },
+                  "ProductDescription": {
+                    "type": "string"
+                  },
+                  "Rating": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "ProductPrice": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "OfferPrize": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "CategoryName": {
+                    "type": "string"
+                  },
+                  "CategoryId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "ProductName": {
+                  "style": "form"
+                },
+                "ProductDescription": {
+                  "style": "form"
+                },
+                "Rating": {
+                  "style": "form"
+                },
+                "ProductPrice": {
+                  "style": "form"
+                },
+                "OfferPrize": {
+                  "style": "form"
+                },
+                "CategoryName": {
+                  "style": "form"
+                },
+                "CategoryId": {
+                  "style": "form"
+                },
+                "image": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Product/All": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Product/GetById/{id}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Product/Update_Pro/{id}": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "CategoryId",
+                  "OfferPrize",
+                  "ProductDescription",
+                  "ProductName",
+                  "ProductPrice",
+                  "Rating"
+                ],
+                "type": "object",
+                "properties": {
+                  "ProductName": {
+                    "type": "string"
+                  },
+                  "ProductDescription": {
+                    "type": "string"
+                  },
+                  "Rating": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "ProductPrice": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "OfferPrize": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "CategoryName": {
+                    "type": "string"
+                  },
+                  "CategoryId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "ProductName": {
+                  "style": "form"
+                },
+                "ProductDescription": {
+                  "style": "form"
+                },
+                "Rating": {
+                  "style": "form"
+                },
+                "ProductPrice": {
+                  "style": "form"
+                },
+                "OfferPrize": {
+                  "style": "form"
+                },
+                "CategoryName": {
+                  "style": "form"
+                },
+                "CategoryId": {
+                  "style": "form"
+                },
+                "image": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Product/Delete/{id}": {
+      "delete": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Product/search-item": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Product/getByCategoryName": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "CatName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Product/FeaturedPro": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Product/HotDeals": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Enter 'Bearer' followed by a space and your JWT token.",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
