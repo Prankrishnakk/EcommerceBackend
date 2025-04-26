@@ -36,9 +36,8 @@ namespace EcommerceBackend.Controllers
             }
         }
 
-
         [HttpPost("Login")]
-        public async Task<IActionResult> Login([FromForm                                                                                                                                                                                                                                                                                                                                                                                                                    ] UserLoginDto login)
+        public async Task<IActionResult> Login([FromForm]UserLoginDto login)
         {
             try
             {
@@ -58,9 +57,7 @@ namespace EcommerceBackend.Controllers
                 {
                     return StatusCode(403, "User is blocked by admin!");
                 }
-                return Ok(new ApiResponse<UserResponseDto>(true, "Login success", res, null));
-
-
+                return Ok(res);
             }
             catch (Exception ex)
             {

@@ -12,6 +12,7 @@ namespace EcommerceBackend.Context
         public DbSet<Products>products { get; set; }
         public DbSet<Cart> cart { get; set; }
         public DbSet<CartItems> cartItems { get; set; }
+        public DbSet<WishList>wishLists { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -66,6 +67,17 @@ namespace EcommerceBackend.Context
             modelBuilder.Entity<CartItems>()
                 .HasOne(a => a._Product)
                 .WithMany(b => b._CartItems)
+                .HasForeignKey(c => c.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<WishList>()
+                .HasOne(a => a._User)
+                .WithMany(b => b._WishLists)
+                .HasForeignKey(c => c.UserId);
+
+            modelBuilder.Entity<WishList>()
+                .HasOne(a => a._Products)
+                .WithMany()
                 .HasForeignKey(c => c.ProductId)
                 .OnDelete(DeleteBehavior.Cascade);
         }

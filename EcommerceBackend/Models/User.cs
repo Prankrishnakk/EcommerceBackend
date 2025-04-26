@@ -9,7 +9,7 @@
         public string Role { get; set; }
         public bool IsBlocked { get; set; }
         public virtual Cart _Cart { get; set; }
- 
+        public virtual ICollection<WishList> _WishLists { get; set; }
 
     }
 }

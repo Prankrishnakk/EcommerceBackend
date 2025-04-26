@@ -17,6 +17,13 @@ namespace EcommerceBackend.Mapper
             .ReverseMap();
             CreateMap<Products, AddProductDto>().ReverseMap();
             CreateMap<CartItems, CartViewDto>().ReverseMap();
+            CreateMap<WishList,WishListViewDto>().ReverseMap();
+
+
+
+
+
+
         }
     }
 }

@@ -367,5 +367,47 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.WishlistController",
+    "Method": "Add",
+    "RelativePath": "api/Wishlist/AddOrRemove/{pro_id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pro_id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.WishlistController",
+    "Method": "GetWishList",
+    "RelativePath": "api/Wishlist/Getwishlist",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EcommerceBackend.Controllers.WishlistController",
+    "Method": "Remove",
+    "RelativePath": "api/Wishlist/RemoveWishlist/{pro_id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pro_id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
