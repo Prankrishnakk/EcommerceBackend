@@ -13,6 +13,7 @@ namespace EcommerceBackend.Context
         public DbSet<Cart> cart { get; set; }
         public DbSet<CartItems> cartItems { get; set; }
         public DbSet<WishList>wishLists { get; set; }
+        public DbSet<UserAddress>userAddresses { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -80,6 +81,11 @@ namespace EcommerceBackend.Context
                 .WithMany()
                 .HasForeignKey(c => c.ProductId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<UserAddress>()
+            .HasOne(a => a._UserAd)
+            .WithMany(b => b._UserAddress)
+            .HasForeignKey(c => c.UserId);
         }
 
 

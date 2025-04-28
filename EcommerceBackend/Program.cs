@@ -2,6 +2,7 @@
 using EcommerceBackend.Context;
 using EcommerceBackend.CustomMiddleware;
 using EcommerceBackend.Mapper;
+using EcommerceBackend.Services.AddressServicess;
 using EcommerceBackend.Services.AutheticationServices;
 using EcommerceBackend.Services.CartServices;
 using EcommerceBackend.Services.CategoryServices;
@@ -28,6 +29,7 @@ namespace EcommerceBackend
             builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
             builder.Services.AddScoped<ICartService, CartService>();
             builder.Services.AddScoped<IWishListService, WishListServices>();
+            builder.Services.AddScoped<IAddressService, AddressService>();
 
 
 
