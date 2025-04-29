@@ -11,6 +11,7 @@
         public virtual Cart _Cart { get; set; }
         public virtual ICollection<WishList> _WishLists { get; set; }
         public virtual ICollection<UserAddress> _UserAddress { get; set; }
-      
+        public virtual ICollection<Order> _Orders { get; set; }
+
     }
 }

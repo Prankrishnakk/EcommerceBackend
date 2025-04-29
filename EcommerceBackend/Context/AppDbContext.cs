@@ -14,6 +14,8 @@ namespace EcommerceBackend.Context
         public DbSet<CartItems> cartItems { get; set; }
         public DbSet<WishList>wishLists { get; set; }
         public DbSet<UserAddress>userAddresses { get; set; }
+        public DbSet<Order> orders { get; set; }
+        public DbSet<OrderItems> orderItems { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -86,6 +88,42 @@ namespace EcommerceBackend.Context
             .HasOne(a => a._UserAd)
             .WithMany(b => b._UserAddress)
             .HasForeignKey(c => c.UserId);
+
+            modelBuilder.Entity<Order>()
+              .HasOne(a => a._User)
+              .WithMany(b => b._Orders)
+              .HasForeignKey(c => c.UserId)
+              .OnDelete(DeleteBehavior.Restrict);
+
+
+            modelBuilder.Entity<Order>()
+                .HasOne(a => a._UserAd)
+                .WithMany(b => b._Orders)
+                .HasForeignKey(c => c.AddressId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Order>()
+                .Property(pr => pr.OrderStatus)
+                .HasDefaultValue("OderPlaced");
+
+            modelBuilder.Entity<Order>()
+                .Property(pr => pr.Total)
+                .HasPrecision(30, 2);
+
+            modelBuilder.Entity<OrderItems>()
+                .HasOne(a => a._Order)
+                .WithMany(b => b._Items)
+                .HasForeignKey(c => c.OrderId);
+
+            modelBuilder.Entity<OrderItems>()
+                .HasOne(a => a.Product)
+                .WithMany()
+                .HasForeignKey(c => c.ProductId);
+
+            modelBuilder.Entity<OrderItems>()
+                .Property(pr => pr.TotalPrice)
+                .HasPrecision(18, 2);
+
         }
 
 

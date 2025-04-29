@@ -358,6 +358,173 @@
         }
       }
     },
+    "/api/Order/Manage-order-status/{oid}": {
+      "patch": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "oid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Order/Place-order-individual/{pro_id}": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "pro_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrderDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrderDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrderDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Order/ Place-order-all": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrderDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrderDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrderDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Order/Get-order-Details": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Order/Get-order-Details-Admin": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Order/Total Revenue": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Order/Total-Products-Sold": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Order/GetOrderDetailsAdmin-ByuserId/{id}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Product/Add_Pro": {
       "post": {
         "tags": [
@@ -752,6 +919,16 @@
           "postalCode": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateOrderDto": {
+        "type": "object",
+        "properties": {
+          "addId": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
