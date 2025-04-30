@@ -358,7 +358,7 @@
         }
       }
     },
-    "/api/Order/Manage-order-status/{oid}": {
+    "/api/Order/manage-order-status/{oid}": {
       "patch": {
         "tags": [
           "Order"
@@ -374,6 +374,25 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -562,9 +581,6 @@
                     "type": "number",
                     "format": "double"
                   },
-                  "CategoryName": {
-                    "type": "string"
-                  },
                   "CategoryId": {
                     "type": "integer",
                     "format": "int32"
@@ -589,9 +605,6 @@
                   "style": "form"
                 },
                 "OfferPrize": {
-                  "style": "form"
-                },
-                "CategoryName": {
                   "style": "form"
                 },
                 "CategoryId": {
@@ -666,14 +679,6 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "required": [
-                  "CategoryId",
-                  "OfferPrize",
-                  "ProductDescription",
-                  "ProductName",
-                  "ProductPrice",
-                  "Rating"
-                ],
                 "type": "object",
                 "properties": {
                   "ProductName": {
@@ -693,9 +698,6 @@
                   "OfferPrize": {
                     "type": "number",
                     "format": "double"
-                  },
-                  "CategoryName": {
-                    "type": "string"
                   },
                   "CategoryId": {
                     "type": "integer",
@@ -721,9 +723,6 @@
                   "style": "form"
                 },
                 "OfferPrize": {
-                  "style": "form"
-                },
-                "CategoryName": {
                   "style": "form"
                 },
                 "CategoryId": {
@@ -824,6 +823,96 @@
       "get": {
         "tags": [
           "Product"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Product/Paginated": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pagesize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/gett-all-users": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/userbyId/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/block/unblock{id}": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {

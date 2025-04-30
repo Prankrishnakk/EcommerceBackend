@@ -9,6 +9,7 @@ using EcommerceBackend.Services.CategoryServices;
 using EcommerceBackend.Services.CloudinaryServices;
 using EcommerceBackend.Services.OrderServices;
 using EcommerceBackend.Services.ProductServices;
+using EcommerceBackend.Services.UserServices;
 using EcommerceBackend.Services.WishListServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +33,7 @@ namespace EcommerceBackend
             builder.Services.AddScoped<IWishListService, WishListServices>();
             builder.Services.AddScoped<IAddressService, AddressService>();
             builder.Services.AddScoped<IOrderServices, OrderServices>();
+            builder.Services.AddScoped<IUserServices, UserServices>();
 
 
 

@@ -101,7 +101,7 @@ namespace EcommerceBackend.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut("Update_Pro/{id}")]
-        public async Task<IActionResult> Update_pro(int id, [FromForm] AddProductDto updateProduct_Dto, IFormFile? image)
+        public async Task<IActionResult> Update_pro(int id, [FromForm] UpdateProductDto updateProduct_Dto, IFormFile? image)
         {
             try
             {
@@ -211,6 +211,22 @@ namespace EcommerceBackend.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("Paginated")]
+        [Authorize]
+        public async Task<IActionResult> Pagination([FromQuery] int pageNumber = 1, [FromQuery] int pagesize = 10)
+        {
+            try
+            {
+                var products = await _Services.PaginatedProduct(pageNumber, pagesize);
+                return Ok(products);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
 
 
 

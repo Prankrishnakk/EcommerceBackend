@@ -10,8 +10,10 @@ namespace EcommerceBackend.Services.ProductServices
         Task<ProductWithCategoryDto> GetProductById(int id);
         Task<List<ProductWithCategoryDto>> GetProductsByCategoryName(string categoryname);
         Task<bool> DeleteProduct(int id);
-        Task UpdateProduct(int id, AddProductDto addpro, IFormFile image);
+        Task UpdateProduct(int id, UpdateProductDto addpro, IFormFile image);
         Task<List<ProductWithCategoryDto>> SearchProduct(string search);
         Task<List<ProductWithCategoryDto>> HotDeals();
+        Task<List<ProductviewDto>> PaginatedProduct(int pagenumber, int pagesize);
     }
 }
+

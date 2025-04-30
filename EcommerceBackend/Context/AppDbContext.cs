@@ -26,6 +26,7 @@ namespace EcommerceBackend.Context
                 .Property(x => x.Role)
                 .HasDefaultValue("User");
 
+
             modelBuilder.Entity<User>()
                 .Property(i => i.IsBlocked)
                 .HasDefaultValue(false);

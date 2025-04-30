@@ -17,19 +17,20 @@ namespace EcommerceBackend.Controllers
             _orderService = orderService;
         }
         [Authorize(Roles = "Admin")]
-        [HttpPatch("Manage-order-status/{oid}")]
-        public async Task<IActionResult> OrderStatus(int oid)
+        [HttpPatch("manage-order-status/{oid}")]
+        public async Task<IActionResult> UpdateOrderStatus(int oid, [FromBody] string newStatus)
         {
             try
             {
-                var res = await _orderService.UpdateOrderStatus(oid);
-                return Ok(new ApiResponse<string>(true, "Updated", res, null));
+                var result = await _orderService.UpdateOrderStatus(oid, newStatus);
+                return Ok(new ApiResponse<string>(true, "Order status updated successfully", result, null));
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.InnerException?.Message);
+                return BadRequest(new ApiResponse<string>(false, "Failed to update order status", null, ex.InnerException?.Message ?? ex.Message));
             }
         }
+
         [Authorize]
         [HttpPost("Place-order-individual/{pro_id}")]
         public async Task<IActionResult> individual_probuy(int pro_id, CreateOrderDto dto)
@@ -50,6 +51,7 @@ namespace EcommerceBackend.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
         [HttpPost(" Place-order-all")]
         [Authorize]
         public async Task<IActionResult> PlaceOrder(CreateOrderDto createOrderDto)
@@ -57,7 +59,7 @@ namespace EcommerceBackend.Controllers
             try
             {
                 var user_id = Convert.ToInt32(HttpContext.Items["Id"]);
-                var res = await _orderService.CrateOrder_CheckOut(user_id, createOrderDto);
+                var res = await _orderService.OrderFullCart(user_id, createOrderDto);
                 return Ok(new ApiResponse<string>(true, "successfully placed", "done", null));
             }
             catch (Exception ex)

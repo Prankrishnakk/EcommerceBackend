@@ -6,6 +6,8 @@ using EcommerceBackend.Models;
 using EcommerceBackend.Services.CloudinaryServices;
 using Microsoft.EntityFrameworkCore;
 
+using Product = EcommerceBackend.Models.Products;
+
 namespace EcommerceBackend.Services.ProductServices
 {
     public class ProductService : IProductService
@@ -171,42 +173,53 @@ namespace EcommerceBackend.Services.ProductServices
 
 
 
-        public async Task UpdateProduct(int id, AddProductDto addPro, IFormFile? image)
+        public async Task UpdateProduct(int id, UpdateProductDto addPro, IFormFile? image)
         {
             try
             {
                 var pro = await _context.products.FirstOrDefaultAsync(x => x.Id == id);
-                var CatExists = await _context.categories.FirstOrDefaultAsync(x => x.Id == addPro.CategoryId);
+                if (pro == null)
+                    throw new Exception("Product not found");
 
-                if (CatExists == null)
+                if (addPro.CategoryId.HasValue)
                 {
-                    throw new Exception("Category not found");
+                    var catExists = await _context.categories.FirstOrDefaultAsync(x => x.Id == addPro.CategoryId.Value);
+                    if (catExists == null)
+                        throw new Exception("Category not found");
+
+                    pro.CategoryId = addPro.CategoryId.Value;
                 }
 
-                if (pro != null)
+                if (!string.IsNullOrWhiteSpace(addPro.ProductName))
+                    pro.ProductName = addPro.ProductName;
+
+                if (!string.IsNullOrWhiteSpace(addPro.ProductDescription))
+                    pro.ProductDescription = addPro.ProductDescription;
+
+                if (addPro.ProductPrice.HasValue)
+                    pro.ProductPrice = addPro.ProductPrice.Value;
+
+                if (addPro.OfferPrize.HasValue)
+                    pro.offerPrize = addPro.OfferPrize.Value;
+
+                if (addPro.Rating.HasValue)
+                    pro.Rating = addPro.Rating.Value;
+
+                if (image != null && image.Length > 0)
                 {
-
-                    _mapper.Map(addPro, pro);
-
-
-                    if (image != null && image.Length > 0)
-                    {
-                        string imgUrl = await _cloudinary.UploadImageAsync(image);
-                        pro.ImageUrl = imgUrl;
-                    }
-
-                    await _context.SaveChangesAsync();
+                    string imgUrl = await _cloudinary.UploadImageAsync(image);
+                    pro.ImageUrl = imgUrl;
                 }
-                else
-                {
-                    throw new Exception($"Product with ID: {id} not found!");
-                }
+
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
+
+
         public async Task<List<ProductWithCategoryDto>> HotDeals()
         {
             try
@@ -254,6 +267,29 @@ namespace EcommerceBackend.Services.ProductServices
 
                 return _mapper.Map<List<ProductWithCategoryDto>>(pro);
 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
+
+        public async Task<List<ProductviewDto>> PaginatedProduct(int pagenumber, int pagesize)
+        {
+            try
+            {
+                var products = await _context.products.Include(x => x._Category).Skip((pagenumber - 1) * pagesize).Take(pagesize).ToListAsync();
+                return products.Select(p => new ProductviewDto
+                {
+                    ProductName = p.ProductName,
+                    ProductDescription = p.ProductDescription,
+                    ProductPrice = p.ProductPrice,
+                    ImageUrl = p.ImageUrl,
+                    StockId = p.StockId
+
+                }).ToList();
             }
             catch (Exception ex)
             {

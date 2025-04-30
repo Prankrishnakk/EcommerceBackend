@@ -68,7 +68,7 @@ namespace EcommerceBackend.Services.OrderServices
                 throw new Exception($"An error occurred while saving changes: {ex.InnerException?.Message ?? ex.Message}");
             }
         }
-        public async Task<bool> CrateOrder_CheckOut(int userId, CreateOrderDto createOrderDto)
+        public async Task<bool> OrderFullCart(int userId, CreateOrderDto createOrderDto)
         {
             try
             {
@@ -261,7 +261,7 @@ namespace EcommerceBackend.Services.OrderServices
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<string> UpdateOrderStatus(int oId)
+        public async Task<string> UpdateOrderStatus(int oId, string newStatus)
         {
             try
             {
@@ -272,20 +272,14 @@ namespace EcommerceBackend.Services.OrderServices
                     throw new Exception("Order not found");
                 }
 
-                //const string? OrderPlaced = "OrderPlaced";
-                //const string? Delivered = "Delivered";
-
-
-                order.OrderStatus = "Delivered";
-
-
+                order.OrderStatus = newStatus;
 
                 await _context.SaveChangesAsync();
                 return order.OrderStatus;
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.InnerException?.Message);
+                throw new Exception(ex.InnerException?.Message ?? ex.Message);
             }
         }
 
